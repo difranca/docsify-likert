@@ -1,0 +1,28 @@
+.likert {
+    border-style: ridge;
+    height: content;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border-radius: 12px;
+    background-color: var(--blockquote-background);
+}
+
+.likert-button {
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    font-size: 30px;
+    transition: background-color 1s;
+}
+
+.likert-button:hover {
+    background-color:white;
+}
+
+.likert-thanks {
+    height: 0px;
+    visibility: collapse;
+    transition: 1s;
+}
