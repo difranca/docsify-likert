@@ -3,27 +3,27 @@ import styles from './styles.css';
 
 (function () {
     const CONFIG = {
-        question:"How satisfied were you with this page information?",
+        question:'How satisfied were you with this page information?',
 
-        img1: "https://github.githubassets.com/images/icons/emoji/tired_face.png",
-        img2: "https://github.githubassets.com/images/icons/emoji/sweat.png",
-        img3: "https://github.githubassets.com/images/icons/emoji/neutral_face.png",
-        img4: "https://github.githubassets.com/images/icons/emoji/smile.png",
-        img5: "https://github.githubassets.com/images/icons/emoji/heart_eyes.png",
+        img1: 'https://github.githubassets.com/images/icons/emoji/tired_face.png',
+        img2: 'https://github.githubassets.com/images/icons/emoji/sweat.png',
+        img3: 'https://github.githubassets.com/images/icons/emoji/neutral_face.png',
+        img4: 'https://github.githubassets.com/images/icons/emoji/smile.png',
+        img5: 'https://github.githubassets.com/images/icons/emoji/heart_eyes.png',
 
-        val1: "1",
-        val2: "2",
-        val3: "3",
-        val4: "4",
-        val5: "5",
+        val1: '1',
+        val2: '2',
+        val3: '3',
+        val4: '4',
+        val5: '5',
 
-        alt1: "Very Unsatisfied",
-        alt2: "Unsatisfied",
-        alt3: "Neutral",
-        alt4: "Satisfied",
-        alt5: "Very Satisfied",
+        alt1: 'Very Unsatisfied',
+        alt2: 'Unsatisfied',
+        alt3: 'Neutral',
+        alt4: 'Satisfied',
+        alt5: 'Very Satisfied',
 
-        message: "Thanks for your support!",
+        message: 'Thanks for your support!',
     };
 
     function mergeObjects(obj1, obj2, level = 0) {
@@ -82,28 +82,28 @@ import styles from './styles.css';
                 const message = findSetting(settings, 'message', options.message);
 
                 const likertDiv = `
-                    <div id="likert" class="likert">
-                        <p align="center" class="likert-question">` + question + `</p>
+                    <div id='likert' class='likert'>
+                        <p align='center' class='likert-question'>${question}</p>
                         <p>
-                            <div id="likert-buttons" align="center">
-                                <button onclick="likertClick(` + val1 + `)" class="likert-button">
-                                    <img class="emoji" src="` + img1 + `" alt="` + alt1 + `">
+                            <div id='likert-buttons' align='center'>
+                                <button onclick='likertClick(${val1})' class='likert-button'>
+                                    <img class='emoji' src='${img1}' alt='${alt1}'>
                                 </button>
-                                <button onclick="likertClick(` + val2 + `)" class="likert-button">
-                                    <img class="emoji" src="` + img2 + `" alt="` + alt2 + `">
+                                <button onclick='likertClick(${val2})' class='likert-button'>
+                                    <img class='emoji' src='${img2}' alt='${alt2}'>
                                 </button>
-                                <button onclick="likertClick(` + val3 + `)" class="likert-button">
-                                    <img class="emoji" src="` + img3 + `" alt="` + alt3 + `">
+                                <button onclick='likertClick(${val3})' class='likert-button'>
+                                    <img class='emoji' src='${img3}' alt='${alt3}'>
                                 </button>
-                                <button onclick="likertClick(` + val4 + `)" class="likert-button">
-                                    <img class="emoji" src="` + img4 + `" alt="` + alt4 + `">
+                                <button onclick='likertClick(${val4})' class='likert-button'>
+                                    <img class='emoji' src='${img4}' alt='${alt4}'>
                                 </button>
-                                <button onclick="likertClick(` + val5 + `)" class="likert-button">
-                                    <img class="emoji" src="` + img5 + `" alt="` + alt5 + `">
+                                <button onclick='likertClick(${val5})' class='likert-button'>
+                                    <img class='emoji' src='${img5}' alt='${alt5}'>
                                 </button>
                             </div>
-                            <div id="likert-thanks" align="center" class="likert-thanks">
-                                <span>` + message + `</span>
+                            <div id='likert-thanks' align='center' class='likert-thanks'>
+                                <span>${message}</span>
                             </div>
                         </p>
                     </div>
@@ -113,9 +113,27 @@ import styles from './styles.css';
             });
             next(modHtml);
         });
+
+        hook.doneEach(function() {
+            var likertBtns = document.getElementsByClassName('likert-button');           
+
+            for (let item of likertBtns) {
+                
+                item.addEventListener("click", function() {
+                    var likertButtons = document.getElementById('likert-buttons');
+                    var likertThanks = document.getElementById('likert-thanks');
+
+                    likertButtons.style.visibility = 'collapse';
+                    likertButtons.style.height = '0px';
+                    likertThanks.style.visibility = 'visible';
+                    likertThanks.style.height = '100%';
+                });
+            }
+        });
     };
 
     window.$docsify = window.$docsify || {};
     window.$docsify.plugins = [].concat(install, window.$docsify.plugins);
 
 }());
+
